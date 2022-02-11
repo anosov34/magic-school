@@ -1,5 +1,8 @@
 package ru.hogvards.magicschool;
 
+import ru.hogvards.magicschool.model.Faculty;
+import ru.hogvards.magicschool.model.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 

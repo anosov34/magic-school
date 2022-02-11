@@ -1,4 +1,4 @@
-package ru.hogvards.magicschool;
+package ru.hogvards.magicschool.model;
 
 import java.util.Objects;
 
