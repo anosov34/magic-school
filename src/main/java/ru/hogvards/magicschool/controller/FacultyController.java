@@ -31,8 +31,9 @@ public class FacultyController {
     }
 
     @DeleteMapping("delete")
-    public Faculty deleteFaculty(@RequestParam long id) {
-        return facultyService.removeFaculty(id);
+    public ResponseEntity deleteFaculty(@RequestParam long id) {
+         facultyService.removeFaculty(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("find")
