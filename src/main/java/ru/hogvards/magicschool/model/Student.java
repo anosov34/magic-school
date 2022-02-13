@@ -1,19 +1,26 @@
 package ru.hogvards.magicschool.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
-
+@Entity
 public class Student {
+    @GeneratedValue
+    @Id
     private String name;
     private int age;
     private Long id;
 
 
 
-    public Student(Long id, String name, int age) {
+    public Student(String name, int age) {
         this.name = name;
         this.age = age;
-        this.id = id;
 
+    }
+
+    public Student() {
     }
 
     public Long getId() {
@@ -50,7 +57,7 @@ public class Student {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, age);
+        return Objects.hash(id);
 
     }
 

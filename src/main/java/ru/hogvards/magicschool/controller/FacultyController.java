@@ -13,40 +13,40 @@ import java.util.stream.Collectors;
 @RequestMapping("faculty")
 @RestController
 public class FacultyController {
-    public final FacultyService facultyService;
+    private final FacultyService facultyService;
 
     public FacultyController(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
 
 
-    @PostMapping("create")
+    @PostMapping()
     public Faculty createFaculty(@RequestBody Faculty faculty) {
         return facultyService.addFaculty(faculty);
     }
 
-    @PutMapping("edit")
+    @PutMapping()
     public Faculty editFaculty(@RequestBody Faculty faculty) {
         return facultyService.editFaculty(faculty);
     }
 
-    @DeleteMapping("delete")
-    public ResponseEntity deleteFaculty(@RequestParam long id) {
+    @DeleteMapping()
+    public ResponseEntity<Faculty> deleteFaculty(@RequestParam long id) {
          facultyService.removeFaculty(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("find")
+    @GetMapping(params = "{id}")
     public Faculty getFaculty(@RequestParam long id) {
         return facultyService.findFaculty(id);
     }
 
-    @GetMapping("all")
+    @GetMapping()
     public Collection<Faculty> getAllFaculties() {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping("color")
+    @GetMapping(params = "{color}")
     public Collection<Faculty> sortFacultyByColor(@RequestParam String color) {
         return facultyService.getAllFaculties().stream()
                 .filter(faculty -> faculty.getColor().equals(color))

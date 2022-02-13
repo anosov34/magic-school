@@ -19,33 +19,34 @@ public class StudentController {
     }
 
 
-    @GetMapping("id")
+    @GetMapping()
     public Student getStudent(@RequestParam Long id) {
         return studentService.findStudent(id);
     }
 
-    @PostMapping("create")
+    @PostMapping()
     public Student createStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
 
-    @PutMapping("edit")
+    @PutMapping()
     public Student editStudent(@RequestBody Student student) {
         return studentService.editStudent(student);
     }
 
-    @DeleteMapping("remove")
-    public Student deleteStudent(@RequestParam long id) {
-        return studentService.removeStudent(id);
+    @DeleteMapping(params = "{id}")
+    public ResponseEntity<Student> deleteStudent(@RequestParam long id) {
+        studentService.removeStudent(id);
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("all")
+    @GetMapping()
     public Collection<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("age")
+    @GetMapping(params = "{age}")
     public Collection<Student> sortStudentsByAge(@RequestParam int age) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getAge() == age)
