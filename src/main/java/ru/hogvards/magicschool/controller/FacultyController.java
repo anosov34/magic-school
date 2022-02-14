@@ -3,6 +3,7 @@ package ru.hogvards.magicschool.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogvards.magicschool.exceptions.BadRequestException;
 import ru.hogvards.magicschool.model.Faculty;
 import ru.hogvards.magicschool.model.Student;
 import ru.hogvards.magicschool.service.FacultyService;
@@ -31,13 +32,13 @@ public class FacultyController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Faculty> deleteFaculty(@RequestParam long id) {
+    public ResponseEntity<Faculty> deleteFaculty(@RequestParam Long id) {
          facultyService.removeFaculty(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(params = "{id}")
-    public Faculty getFaculty(@RequestParam long id) {
+    @GetMapping("find")
+    public Faculty getFaculty(@RequestParam Long id) {
         return facultyService.findFaculty(id);
     }
 
@@ -46,7 +47,7 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping(params = "{color}"  )
+    @GetMapping("color")
     public Collection<Faculty> sortFacultyByColor(@RequestParam String color) {
         return facultyService.getAllFaculties().stream()
                 .filter(faculty -> faculty.getColor().equals(color))

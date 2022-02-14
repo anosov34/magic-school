@@ -28,11 +28,11 @@ public class FacultyService {
         return  facultyRepository.save(faculty);
     }
 
-    public Faculty findFaculty(long id) {
+    public Faculty findFaculty(Long id) {
         return facultyRepository.getById(id);
     }
 
-    public void removeFaculty(long id) {
+    public void removeFaculty(Long id) {
         facultyRepository.deleteById(id);
     }
 

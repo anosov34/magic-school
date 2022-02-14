@@ -8,9 +8,11 @@ import java.util.Objects;
 public class Student {
     @GeneratedValue
     @Id
+    private Long id;
+
     private String name;
     private int age;
-    private Long id;
+
 
 
 

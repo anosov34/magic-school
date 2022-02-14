@@ -29,24 +29,23 @@ public class StudentController {
         return studentService.addStudent(student);
     }
 
-
     @PutMapping()
     public Student editStudent(@RequestBody Student student) {
         return studentService.editStudent(student);
     }
 
-    @DeleteMapping(params = "{id}")
+    @DeleteMapping("id")
     public ResponseEntity<Student> deleteStudent(@RequestParam long id) {
         studentService.removeStudent(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(params = "{all}")
+    @GetMapping("all")
     public Collection<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
-    @GetMapping(params = "{age}")
+    @GetMapping("age")
     public Collection<Student> sortStudentsByAge(@RequestParam int age) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getAge() == age)
