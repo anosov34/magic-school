@@ -18,26 +18,24 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-
-    @GetMapping("id")
-    public Student getStudent(@RequestParam Long id) {
-        return studentService.findStudent(id);
-    }
-
-    @PostMapping("create")
+    @PostMapping()
     public Student createStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
-
-    @PutMapping("edit")
+    @PutMapping()
     public Student editStudent(@RequestBody Student student) {
         return studentService.editStudent(student);
     }
 
-    @DeleteMapping("remove")
+    @DeleteMapping()
     public Student deleteStudent(@RequestParam long id) {
         return studentService.removeStudent(id);
+    }
+
+    @GetMapping()
+    public Student getStudent(@RequestParam Long id) {
+        return studentService.findStudent(id);
     }
 
     @GetMapping("all")

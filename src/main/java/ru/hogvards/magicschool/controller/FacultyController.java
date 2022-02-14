@@ -35,18 +35,18 @@ public class FacultyController {
         return facultyService.removeFaculty(id);
     }
 
-    @GetMapping(params = "find")
-    public Faculty getFaculty(@RequestParam long id) {
+    @GetMapping("{id}")
+    public Faculty getFaculty(@PathVariable long id) {
         return facultyService.findFaculty(id);
     }
 
-    @GetMapping(params = "all")
+    @GetMapping("all")
     public Collection<Faculty> getAllFaculties() {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping(params = "color")
-    public Collection<Faculty> sortFacultyByColor(@RequestParam() String color) {
+    @GetMapping("color")
+    public Collection<Faculty> sortFacultyByColor(@RequestParam String color) {
         return facultyService.getAllFaculties().stream()
                 .filter(faculty -> faculty.getColor().equals(color))
                 .collect(Collectors.toList());
