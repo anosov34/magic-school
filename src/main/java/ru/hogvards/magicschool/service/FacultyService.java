@@ -28,12 +28,12 @@ public class FacultyService {
         return  facultyRepository.save(faculty);
     }
 
-    public Faculty findFaculty(Long id) {
-        return facultyRepository.getById(id);
+    public Faculty findFaculty(Long facultyId) {
+        return facultyRepository.getById(facultyId);
     }
 
-    public void removeFaculty(Long id) {
-        facultyRepository.deleteById(id);
+    public void removeFaculty(Long facultyId) {
+        facultyRepository.deleteById(facultyId);
     }
 
     public Collection<Faculty> getAllFaculties() {

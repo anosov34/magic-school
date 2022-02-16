@@ -19,10 +19,7 @@ public class StudentController {
     }
 
 
-    @GetMapping()
-    public Student getStudent(@RequestParam Long id) {
-        return studentService.findStudent(id);
-    }
+
 
     @PostMapping()
     public Student createStudent(@RequestBody Student student) {
@@ -34,11 +31,15 @@ public class StudentController {
         return studentService.editStudent(student);
     }
 
-    @DeleteMapping("id")
+    @DeleteMapping()
     public ResponseEntity<Student> deleteStudent(@RequestParam long id) {
         studentService.removeStudent(id);
         return ResponseEntity.ok().build();
     }
+//    @GetMapping("find")
+//    public Student getStudent(@RequestParam Long id) {
+//        return studentService.findStudent(id);
+//    }
 
     @GetMapping("all")
     public Collection<Student> getAllStudents() {
