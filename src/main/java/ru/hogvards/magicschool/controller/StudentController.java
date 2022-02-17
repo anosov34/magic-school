@@ -34,7 +34,7 @@ public class StudentController {
     }
 
     @GetMapping(params = {"id"})
-    public Student getStudent(@RequestParam Long id) {
+    public Student getStudent(@RequestParam(required = false) Long id) {
         return studentService.findStudent(id);
     }
 
@@ -44,14 +44,15 @@ public class StudentController {
     }
 
     @GetMapping(params = {"age"})
-    public Collection<Student> sortStudentsByAge(@RequestParam int age) {
+    public Collection<Student> sortStudentsByAge(@RequestParam(required = false) int age) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getAge() == age)
                 .collect(Collectors.toList());
     }
 
     @GetMapping(params = {"min", "max"})
-    public Collection<Student> getByStudentAgeRage(@RequestParam int min, @RequestParam int max) {
+    public Collection<Student> getByStudentAgeRage(@RequestParam(required = false)int min,
+                                                   @RequestParam(required = false) int max) {
         return studentService.getStudentsByAgeRage(min, max);
 
     }
