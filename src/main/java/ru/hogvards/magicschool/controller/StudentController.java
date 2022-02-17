@@ -18,22 +18,22 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping()
+    @PostMapping
     public Student createStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
-    @PutMapping()
+    @PutMapping
     public Student editStudent(@RequestBody Student student) {
         return studentService.editStudent(student);
     }
 
-    @DeleteMapping()
-    public Student deleteStudent(@RequestParam long id) {
+    @DeleteMapping
+    public Student deleteStudent(@RequestParam Long id) {
         return studentService.removeStudent(id);
     }
 
-    @GetMapping()
+    @GetMapping(params = {"id"})
     public Student getStudent(@RequestParam Long id) {
         return studentService.findStudent(id);
     }
@@ -43,7 +43,7 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("age")
+    @GetMapping(params = {"age"})
     public Collection<Student> sortStudentsByAge(@RequestParam int age) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getAge() == age)

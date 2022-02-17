@@ -1,12 +1,8 @@
 package ru.hogvards.magicschool.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogvards.magicschool.model.Faculty;
-import ru.hogvards.magicschool.model.Student;
 import ru.hogvards.magicschool.service.FacultyService;
-
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -19,24 +15,23 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-
-    @PostMapping()
+    @PostMapping
     public Faculty createFaculty(@RequestBody Faculty faculty) {
         return facultyService.addFaculty(faculty);
     }
 
-    @PutMapping()
+    @PutMapping
     public Faculty editFaculty(@RequestBody Faculty faculty) {
         return facultyService.editFaculty(faculty);
     }
 
-    @DeleteMapping()
-    public Faculty deleteFaculty(@RequestParam long id) {
+    @DeleteMapping
+    public Faculty deleteFaculty(@RequestParam Long id) {
         return facultyService.removeFaculty(id);
     }
 
-    @GetMapping("{id}")
-    public Faculty getFaculty(@PathVariable long id) {
+    @GetMapping(params = {"id"})
+    public Faculty getFaculty(@RequestParam Long id) {
         return facultyService.findFaculty(id);
     }
 
@@ -45,7 +40,7 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping("color")
+    @GetMapping(params = {"color"})
     public Collection<Faculty> sortFacultyByColor(@RequestParam String color) {
         return facultyService.getAllFaculties().stream()
                 .filter(faculty -> faculty.getColor().equals(color))

@@ -7,8 +7,6 @@ public class Student {
     private int age;
     private Long id;
 
-
-
     public Student(Long id, String name, int age) {
         this.name = name;
         this.age = age;
