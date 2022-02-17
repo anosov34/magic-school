@@ -1,22 +1,25 @@
 package ru.hogvards.magicschool.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 @Entity
 public class Student {
     @GeneratedValue
     @Id
     private Long id;
-
     private String name;
     private int age;
 
-    public Student(String name, int age, Long id) {
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
+
+
+    public Student(String name, int age, Long id, Faculty faculty) {
         this.name = name;
         this.age = age;
         this.id = id;
+        this.faculty = faculty;
     }
 
     public Student() {
