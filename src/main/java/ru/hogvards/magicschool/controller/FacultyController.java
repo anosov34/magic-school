@@ -1,13 +1,9 @@
 package ru.hogvards.magicschool.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.hogvards.magicschool.exceptions.BadRequestException;
 import ru.hogvards.magicschool.model.Faculty;
-import ru.hogvards.magicschool.model.Student;
 import ru.hogvards.magicschool.service.FacultyService;
-
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -20,24 +16,23 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-
-    @PostMapping()
+    @PostMapping
     public Faculty createFaculty(@RequestBody Faculty faculty) {
         return facultyService.addFaculty(faculty);
     }
 
-    @PutMapping()
+    @PutMapping
     public Faculty editFaculty(@RequestBody Faculty faculty) {
         return facultyService.editFaculty(faculty);
     }
 
-    @DeleteMapping()
+    @DeleteMapping
     public ResponseEntity<Faculty> deleteFaculty(@RequestParam Long facultyId) {
-         facultyService.removeFaculty(facultyId);
+        facultyService.removeFaculty(facultyId);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("find")
+    @GetMapping(params = {"facultyId"})
     public Faculty getFaculty(@RequestParam Long facultyId) {
         return facultyService.findFaculty(facultyId);
 

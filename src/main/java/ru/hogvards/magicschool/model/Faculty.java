@@ -46,7 +46,6 @@ public class Faculty {
         this.color = color;
     }
 
-
     @Override
     public String toString() {
         return "Faculty: " +

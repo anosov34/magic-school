@@ -1,10 +1,8 @@
 package ru.hogvards.magicschool.service;
 
 import org.springframework.stereotype.Service;
-import ru.hogvards.magicschool.exceptions.BadRequestException;
 import ru.hogvards.magicschool.model.Student;
 import ru.hogvards.magicschool.repository.StudentRepository;
-
 import java.util.Collection;
 
 @Service
@@ -24,7 +22,7 @@ public class StudentService {
     }
 
     public Student findStudent(long id) {
-        return studentRepository.getById(id);
+        return studentRepository.findById(id).orElse(null);
     }
 
     public void removeStudent(long id) {

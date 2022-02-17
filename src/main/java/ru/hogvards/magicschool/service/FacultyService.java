@@ -1,16 +1,8 @@
 package ru.hogvards.magicschool.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import ru.hogvards.magicschool.exceptions.BadRequestException;
 import ru.hogvards.magicschool.model.Faculty;
-import ru.hogvards.magicschool.model.Student;
 import ru.hogvards.magicschool.repository.FacultyRepository;
-
 import java.util.Collection;
-import java.util.HashMap;
-
 
 @Service
 public class FacultyService {
@@ -22,10 +14,11 @@ public class FacultyService {
     }
 
     public Faculty addFaculty(Faculty faculty) {
-       return facultyRepository.save(faculty);
+        return facultyRepository.save(faculty);
     }
+
     public Faculty editFaculty(Faculty faculty) {
-        return  facultyRepository.save(faculty);
+        return facultyRepository.save(faculty);
     }
 
     public Faculty findFaculty(Long facultyId) {

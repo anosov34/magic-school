@@ -1,6 +1,5 @@
 package ru.hogvards.magicschool.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogvards.magicschool.model.Student;
@@ -18,36 +17,34 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-
-
-
-    @PostMapping()
+    @PostMapping
     public Student createStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
-    @PutMapping()
+    @PutMapping
     public Student editStudent(@RequestBody Student student) {
         return studentService.editStudent(student);
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Student> deleteStudent(@RequestParam long id) {
+    @DeleteMapping
+    public ResponseEntity<Student> deleteStudent(@RequestParam Long id) {
         studentService.removeStudent(id);
         return ResponseEntity.ok().build();
     }
-//    @GetMapping("find")
-//    public Student getStudent(@RequestParam Long id) {
-//        return studentService.findStudent(id);
-//    }
+
+    @GetMapping(params = {"id"})
+    public Student getStudent (@RequestParam Long id){
+            return studentService.findStudent(id);
+    }
 
     @GetMapping("all")
     public Collection<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("age")
-    public Collection<Student> sortStudentsByAge(@RequestParam int age) {
+    @GetMapping("{age}")
+    public Collection<Student> sortStudentsByAge(@PathVariable int age) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getAge() == age)
                 .collect(Collectors.toList());
