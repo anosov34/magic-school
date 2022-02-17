@@ -43,7 +43,7 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping("color")
+    @GetMapping(params = {"color"})
     public Collection<Faculty> sortFacultyByColor(@RequestParam String color) {
         return facultyService.getAllFaculties().stream()
                 .filter(faculty -> faculty.getColor().equals(color))

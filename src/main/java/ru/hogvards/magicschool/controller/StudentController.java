@@ -43,8 +43,8 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("{age}")
-    public Collection<Student> sortStudentsByAge(@PathVariable int age) {
+    @GetMapping(params = {"age"})
+    public Collection<Student> sortStudentsByAge(@RequestParam int age) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getAge() == age)
                 .collect(Collectors.toList());
