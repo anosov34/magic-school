@@ -31,7 +31,7 @@ public class FacultyController {
     }
 
     @GetMapping(params = {"id"})
-    public Faculty getFaculty(@RequestParam Long id) {
+    public Faculty getFaculty(@RequestParam(required = false) Long id) {
         return facultyService.findFaculty(id);
     }
 
@@ -41,9 +41,7 @@ public class FacultyController {
     }
 
     @GetMapping(params = {"color"})
-    public Collection<Faculty> sortFacultyByColor(@RequestParam String color) {
-        return facultyService.getAllFaculties().stream()
-                .filter(faculty -> faculty.getColor().equals(color))
-                .collect(Collectors.toList());
+    public Collection<Faculty> filterFacultyByColor(@RequestParam (required = false) String color) {
+        return facultyService.filterFacultyByColor(color);
     }
 }

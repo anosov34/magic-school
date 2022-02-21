@@ -1,13 +1,15 @@
 package ru.hogvards.magicschool.service;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ru.hogvards.magicschool.exceptions.BadRequestException;
-import ru.hogvards.magicschool.model.Faculty;
 import ru.hogvards.magicschool.model.Student;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-@Repository
+import java.util.List;
+
+@Service
 public class StudentService {
 
     private final HashMap<Long, Student> students = new HashMap<>();
@@ -42,5 +44,18 @@ public class StudentService {
     }
     public Collection<Student> getAllStudents() {
         return students.values();
+    }
+
+    public Collection<Student> filterStudentByAge(int age) {
+        List<Student> sortedByAgeStudent = new ArrayList<>();
+        for (Student student : students.values()) {
+            if (student.getAge() == age) {
+                sortedByAgeStudent.add(student);
+            }
+        }
+        if (sortedByAgeStudent.size() == 0) {
+            return null;
+        }
+        return sortedByAgeStudent;
     }
 }
