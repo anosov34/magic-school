@@ -17,12 +17,12 @@ public class FacultyController {
 
     @PostMapping
     public Faculty createFaculty(@RequestBody Faculty faculty) {
-        return facultyService.addOrEditFaculty(faculty);
+        return facultyService.addAndEditFaculty(faculty);
     }
 
     @PutMapping
     public Faculty editFaculty(@RequestBody Faculty faculty) {
-        return facultyService.addOrEditFaculty(faculty);
+        return facultyService.addAndEditFaculty(faculty);
     }
 
     @DeleteMapping

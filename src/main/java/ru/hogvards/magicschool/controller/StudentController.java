@@ -6,7 +6,6 @@ import ru.hogvards.magicschool.model.Student;
 import ru.hogvards.magicschool.service.StudentService;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @RequestMapping("student")
 @RestController
@@ -19,12 +18,12 @@ public class StudentController {
 
     @PostMapping
     public Student createStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+        return studentService.addAndEditStudent(student);
     }
 
     @PutMapping
     public Student editStudent(@RequestBody Student student) {
-        return studentService.editStudent(student);
+        return studentService.addAndEditStudent(student);
     }
 
     @DeleteMapping

@@ -14,13 +14,9 @@ public class FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
-    public Faculty addOrEditFaculty(Faculty faculty) {
+    public Faculty addAndEditFaculty(Faculty faculty) {
         return facultyRepository.save(faculty);
     }
-
-//    public Faculty editFaculty(Faculty faculty) {
-//        return facultyRepository.save(faculty);
-//    }
 
     public Faculty findFaculty(Long facultyId) {
         return facultyRepository.findById(facultyId).orElseThrow(FacultyIsNotFoundException::new);
