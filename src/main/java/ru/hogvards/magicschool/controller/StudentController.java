@@ -3,16 +3,16 @@ package ru.hogvards.magicschool.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogvards.magicschool.model.Student;
-import ru.hogvards.magicschool.service.StudentService;
+import ru.hogvards.magicschool.serviceimpl.StudentServiceImpl;
 
 import java.util.Collection;
 
 @RequestMapping("student")
 @RestController
 public class StudentController {
-    private final StudentService studentService;
+    private final StudentServiceImpl studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentServiceImpl studentService) {
         this.studentService = studentService;
     }
 
