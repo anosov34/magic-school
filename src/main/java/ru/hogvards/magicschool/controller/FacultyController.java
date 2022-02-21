@@ -3,27 +3,27 @@ package ru.hogvards.magicschool.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogvards.magicschool.model.Faculty;
-import ru.hogvards.magicschool.service.FacultyService;
+import ru.hogvards.magicschool.serviceimpl.FacultyServiceImpl;
+
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @RequestMapping("faculty")
 @RestController
 public class FacultyController {
-    private final FacultyService facultyService;
+    private final FacultyServiceImpl facultyService;
 
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyServiceImpl facultyService) {
         this.facultyService = facultyService;
     }
 
     @PostMapping
     public Faculty createFaculty(@RequestBody Faculty faculty) {
-        return facultyService.addFaculty(faculty);
+        return facultyService.addAndEditFaculty(faculty);
     }
 
     @PutMapping
     public Faculty editFaculty(@RequestBody Faculty faculty) {
-        return facultyService.editFaculty(faculty);
+        return facultyService.addAndEditFaculty(faculty);
     }
 
     @DeleteMapping
@@ -38,22 +38,14 @@ public class FacultyController {
 
     }
 
-    @GetMapping("all")
+    @GetMapping
     public Collection<Faculty> getAllFaculties() {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping(params = {"color"})
-    public Collection<Faculty> sortFacultyByColor(@RequestParam String color) {
-        return facultyService.getAllFaculties().stream()
-                .filter(faculty -> faculty.getColor().equals(color))
-                .collect(Collectors.toList());
-    }
-
-    @GetMapping
+    @GetMapping(params = {"name", "color"})
     public Collection<Faculty> getFacultiesByNameOrColor(@RequestParam(required = false) String name,
                                                          @RequestParam(required = false) String color) {
-        return facultyService.getFacultiesByNameOrColor(name, color);
+        return facultyService.findFacultiesByNameOrColor(name, color);
     }
 }
-

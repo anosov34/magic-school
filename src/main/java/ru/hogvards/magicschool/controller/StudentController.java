@@ -3,28 +3,27 @@ package ru.hogvards.magicschool.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogvards.magicschool.model.Student;
-import ru.hogvards.magicschool.service.StudentService;
+import ru.hogvards.magicschool.serviceimpl.StudentServiceImpl;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @RequestMapping("student")
 @RestController
 public class StudentController {
-    private final StudentService studentService;
+    private final StudentServiceImpl studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentServiceImpl studentService) {
         this.studentService = studentService;
     }
 
     @PostMapping
     public Student createStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+        return studentService.addAndEditStudent(student);
     }
 
     @PutMapping
     public Student editStudent(@RequestBody Student student) {
-        return studentService.editStudent(student);
+        return studentService.addAndEditStudent(student);
     }
 
     @DeleteMapping
@@ -38,16 +37,14 @@ public class StudentController {
         return studentService.findStudent(id);
     }
 
-    @GetMapping("all")
+    @GetMapping
     public Collection<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
     @GetMapping(params = {"age"})
     public Collection<Student> sortStudentsByAge(@RequestParam(required = false) int age) {
-        return studentService.getAllStudents().stream()
-                .filter(student -> student.getAge() == age)
-                .collect(Collectors.toList());
+        return studentService.getStudentsByAge(age);
     }
 
     @GetMapping(params = {"min", "max"})
