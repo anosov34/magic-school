@@ -2,16 +2,15 @@ package ru.hogvards.magicschool.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.hogvards.magicschool.model.Faculty;
-import ru.hogvards.magicschool.service.FacultyService;
+import ru.hogvards.magicschool.serviceimpl.FacultyServiceImpl;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @RequestMapping("faculty")
 @RestController
 public class FacultyController {
-    private final FacultyService facultyService;
+    private final FacultyServiceImpl facultyService;
 
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyServiceImpl facultyService) {
         this.facultyService = facultyService;
     }
 
