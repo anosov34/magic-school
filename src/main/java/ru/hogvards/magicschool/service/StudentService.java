@@ -1,6 +1,7 @@
 package ru.hogvards.magicschool.service;
 
 import org.springframework.stereotype.Service;
+import ru.hogvards.magicschool.exceptions.StudentIsNotFoundException;
 import ru.hogvards.magicschool.model.Student;
 import ru.hogvards.magicschool.repository.StudentRepository;
 import java.util.Collection;
@@ -22,7 +23,7 @@ public class StudentService {
     }
 
     public Student findStudent(long id) {
-        return studentRepository.findById(id).orElse(null);
+        return studentRepository.findById(id).orElseThrow(StudentIsNotFoundException::new);
     }
 
     public void removeStudent(long id) {
@@ -31,5 +32,9 @@ public class StudentService {
 
     public Collection<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    public Collection<Student> findStudentByAge(int age) {
+        return studentRepository.findStudentByAge(age);
     }
 }

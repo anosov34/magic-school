@@ -1,5 +1,6 @@
 package ru.hogvards.magicschool.service;
 import org.springframework.stereotype.Service;
+import ru.hogvards.magicschool.exceptions.FacultyIsNotFoundException;
 import ru.hogvards.magicschool.model.Faculty;
 import ru.hogvards.magicschool.repository.FacultyRepository;
 import java.util.Collection;
@@ -13,16 +14,16 @@ public class FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
-    public Faculty addFaculty(Faculty faculty) {
+    public Faculty addOrEditFaculty(Faculty faculty) {
         return facultyRepository.save(faculty);
     }
 
-    public Faculty editFaculty(Faculty faculty) {
-        return facultyRepository.save(faculty);
-    }
+//    public Faculty editFaculty(Faculty faculty) {
+//        return facultyRepository.save(faculty);
+//    }
 
     public Faculty findFaculty(Long facultyId) {
-        return facultyRepository.findById(facultyId).orElse(null);
+        return facultyRepository.findById(facultyId).orElseThrow(FacultyIsNotFoundException::new);
     }
 
     public void removeFaculty(Long facultyId) {
@@ -31,5 +32,9 @@ public class FacultyService {
 
     public Collection<Faculty> getAllFaculties() {
         return facultyRepository.findAll();
+    }
+
+    public Collection<Faculty> getFacultyByColor(String color) {
+        return facultyRepository.findFacultyByColor(color);
     }
 }
