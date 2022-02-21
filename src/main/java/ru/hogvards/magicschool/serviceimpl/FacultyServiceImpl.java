@@ -1,0 +1,65 @@
+package ru.hogvards.magicschool.serviceimpl;
+
+
+import org.springframework.stereotype.Service;
+import ru.hogvards.magicschool.exceptions.BadRequestException;
+import ru.hogvards.magicschool.model.Faculty;
+import ru.hogvards.magicschool.service.FacultyService;
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+
+@Service
+public class FacultyServiceImpl  implements FacultyService {
+    private final HashMap<Long, Faculty> faculties = new HashMap<>();
+    private long id = 0;
+
+
+    public Faculty addFaculty(Faculty faculty) {
+        faculty.setId(++id);
+        faculties.put(id, faculty);
+        return faculty;
+    }
+
+    public Faculty findFaculty(long id) {
+        if (!faculties.containsKey(id)) {
+            throw new BadRequestException();
+        }
+        return faculties.get(id);
+    }
+
+    public Faculty removeFaculty(long id) {
+        if (!faculties.containsKey(id)) {
+            throw new BadRequestException();
+        }
+        return faculties.remove(id);
+    }
+
+    public Faculty editFaculty(Faculty faculty) {
+        if (faculties.containsKey(faculty.getId())) {
+            faculties.put(faculty.getId(), faculty);
+            return faculty;
+        }
+        return null;
+    }
+
+    public Collection<Faculty> filterFacultyByColor(String color) {
+        List<Faculty> sortedByColorFaculties = new ArrayList<>();
+        for (Faculty faculty : faculties.values()) {
+            if (faculty.getColor().equals(color)) {
+                sortedByColorFaculties.add(faculty);
+            }
+        }
+        if (sortedByColorFaculties.size() == 0) {
+            return null;
+        }
+        return sortedByColorFaculties;
+    }
+
+    public Collection<Faculty> getAllFaculties() {
+        return faculties.values();
+    }
+}
