@@ -32,7 +32,10 @@ public class FacultyServiceImpl implements FacultyService {
         return facultyRepository.findAll();
     }
 
-    public Collection<Faculty> findFacultiesByNameOrColor(String name, String color) {
-        return facultyRepository.findFacultyByNameIgnoreCaseOrColorIgnoreCase(name,color);
+    public Collection<Faculty> findFacultiesByName(String name) {
+        return facultyRepository.findFacultyByNameIgnoreCase(name);
+    }
+    public Collection<Faculty> findFacultiesByColor(String color) {
+        return facultyRepository.findFacultyByColorIgnoreCase(color);
     }
 }

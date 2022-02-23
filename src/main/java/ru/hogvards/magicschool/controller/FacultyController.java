@@ -43,9 +43,14 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping(params = {"name", "color"})
+    @GetMapping(params = {"name"})
     public Collection<Faculty> getFacultiesByNameOrColor(@RequestParam(required = false) String name,
                                                          @RequestParam(required = false) String color) {
-        return facultyService.findFacultiesByNameOrColor(name, color);
+        return facultyService.findFacultiesByName(name);
     }
+    @GetMapping(params = {"color"})
+    public Collection<Faculty> getFacultiesByColor(@RequestParam(required = false) String color) {
+        return facultyService.findFacultiesByColor(color);
+    }
+
 }

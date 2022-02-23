@@ -9,5 +9,6 @@ public interface FacultyService {
     Faculty findFaculty(Long facultyId);
     void removeFaculty(Long facultyId);
     Collection<Faculty> getAllFaculties();
-    Collection<Faculty> findFacultiesByNameOrColor(String name, String color);
+    Collection<Faculty> findFacultiesByName(String name);
+    Collection<Faculty> findFacultiesByColor(String color);
 }
